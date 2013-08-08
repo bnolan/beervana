@@ -52,6 +52,7 @@ Beervana::Application.routes.draw do
   resources :sessions
   resources :drinks
   resources :users
+  resources :beers
   
   root 'dashboard#index'
 end
