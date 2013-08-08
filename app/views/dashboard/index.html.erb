@@ -21,19 +21,20 @@
     <%= link_to "Your last drink", current_user %>
   </h3>
 
-  <%= render :partial => 'drinks/show', :locals => {:drink => drink} %>
+  <%= render :partial => 'drinks/show', :locals => {:drink => drink, :show_drink_details => true} %>
 <% end %>
 
 <h3 class="seperator">
   <%= link_to "Top ranked beers", beers_path %>
 </h3>
 
+<%= render :partial => 'beers/show', :collection => Beer.top(5), :as => :beer %>
 
-<h3 class="seperator">
+<h3 class="seperator" onclick="$('#leaderboard').toggle()">
   Leaderboard
 </h3>
 
-<table>
+<table id="leaderboard" style="display: none">
   <tr>
     <th>User</th>
     <th>Std. Drinks</th>
@@ -43,7 +44,7 @@
   <tr>
     <td><%= link_to user.name, user %></td>
     <td><%= "%0.1f" % user.standard_drinks %></td>
-    <td><%= number_to_percentage(user.taste * 100) %></td>
+    <td><%= (user.taste * 100).to_i %>%</td>
   </tr>
 <% end %>
 </table>

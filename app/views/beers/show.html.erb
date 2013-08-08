@@ -1,7 +1,15 @@
 <h1>
-  Beers
+  <%= link_to "Home", root_path, :class => 'button left' %>
+  Beer
 </h1>
 
-<p>
-  <%= @beer.name %> by <%= @beer.brewery.name %>
-</p>
+<h3 style="margin-bottom: 0">
+  <%= @beer.name %>
+</h3>
+
+<h4>
+  <%= @beer.brewery.name %>
+</h4>
+
+
+<%= render :partial => "/drinks/show", :collection => @beer.recent_drinks, :as => :drink, :locals => {:show_drink_details => false} %>

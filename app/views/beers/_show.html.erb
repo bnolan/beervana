@@ -1,0 +1,5 @@
+<div class="beer inline-beer">
+  <b class="rating" style="background-color: rgba(255,192,0,<%= beer.average_rating / 5.0 %>)"><%= beer.average_rating %></b>
+  <h4><%= link_to beer.name, beer %></h4>
+  <span class="brewery"><%= beer.brewery.name %></span>
+</div>

@@ -2,8 +2,12 @@ class Beer < ActiveRecord::Base
   belongs_to :brewery
   has_many :drinks
 
-  def self.top
-    where(["drinks_count >= ?", 0]).order(:average_rating => :desc, :drinks_count => :desc).limit(10)
+  def self.top(limit = 500)
+    order(:average_rating => :desc, :drinks_count => :desc, :name => :asc).limit(limit)
+  end
+
+  def recent_drinks
+    drinks.order(:id => :desc).limit(100)
   end
 
   def update_average_rating

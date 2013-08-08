@@ -8,7 +8,13 @@ class User < ActiveRecord::Base
   end
   
   def taste
-    rand
+    if drinks.any?
+      0.5 + 
+        (0.5 / drinks.count * drinks.where('beer_id in (?)', Beer.where('average_rating>3').collect(&:id)).count) -
+        (0.5 / drinks.count * drinks.where('beer_id in (?)', Beer.where('average_rating<3').collect(&:id)).count)
+    else
+      0.5
+    end
   end
 
   def drinks_brewery_count
