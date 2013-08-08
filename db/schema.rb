@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808035900) do
-
+ActiveRecord::Schema.define(version: 20130808032416) do
   create_table "beers", force: true do |t|
     t.string   "name"
-    t.decimal  "abv"
+    t.decimal  "abv",        precision: 3, scale: 1
     t.integer  "brewery_id"
     t.integer  "ibu"
     t.datetime "created_at"
