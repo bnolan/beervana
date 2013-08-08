@@ -1,0 +1,22 @@
+<h1>
+  New Drink
+  <button onclick="$('form').submit()">Save</button>
+</h1>
+
+<%= form_for Drink.new do |f| %>
+  <p class="f">
+    <%= f.select :beer_id, ['Beer'] + Beer.all.collect { |b| [b.name,b.id] } %>
+  </p>
+  
+  <p class="f">
+    <%= f.select :rating, ['Rating',1,2,3,4,5] %>
+  </p>
+  
+  <p class="f">
+    <%= f.select :volume, [['75ml Taster',75],['250ml Pour'],250] %>
+  </p>
+  
+  <p class="f">
+    <%= f.text_area :notes, :placeholder => "Tasting notes" %>
+  </p>
+<% end %>

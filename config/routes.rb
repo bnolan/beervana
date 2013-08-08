@@ -46,8 +46,11 @@ Beervana::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get 'signout' => 'sessions#destroy'
   
   resources :sessions
+  resources :drinks
   
   root 'dashboard#index'
 end
