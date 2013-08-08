@@ -3,12 +3,31 @@
 </h1>
 
 <p>
-  <%= link_to "Log a drink", new_drink_path %>
+  <%= link_to "Log a drink", new_drink_path, :class => 'button' %>
 </p>
 
-<p>
-  Choice beers
+<p class="meta">
+  There are <b><%= Beer.count %></b> beers, by <b><%= Brewery.count %></b> breweries, to try at Beervana. <b><%= User.count %></b> people are using this app. <b><%= Drink.count %></b> drinks have been drunk in total.
 </p>
+
+<% if drink = current_user.drinks.last %>
+  <h3 class="seperator">
+    Your last drink:
+  </h3>
+
+  <div class="drink last-drink">
+    <b class="rating"><%= drink.rating %></b>
+    <h4><%= drink.beer.name %></h4>
+    <span class="brewery"><%= drink.beer.brewery.name %></span>
+    <p class="meta">You drunk <b><%= drink.volume %>ml</b> of this beer <%= time_ago_in_words drink.beer.created_at %> ago.</p>
+    <p class="notes"><%= drink.notes %></p>
+  </div>
+<% end %>
+
+<h3>
+  Top ranked beers
+</h3>
+
 <% Beer.top.each do |beer| %>
 <p>
 <%= beer.name %> from <%= beer.brewery.name %>. <%= beer.drinks_count %> people gave it <%= beer.average_rating %> out of 5 cold ones.

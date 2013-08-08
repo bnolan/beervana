@@ -1,6 +1,7 @@
 <h1>
+  <%= link_to "Home", root_path, :class => 'button left' %>
   New Drink
-  <button onclick="$('form').submit()">Save</button>
+  <button class="right" onclick="$('form').submit()">Save</button>
 </h1>
 
 <%= form_for Drink.new do |f| %>
