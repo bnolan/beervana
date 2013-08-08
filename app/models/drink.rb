@@ -2,7 +2,7 @@ class Drink < ActiveRecord::Base
   belongs_to :beer, :counter_cache => true
   belongs_to :user
   validates_presence_of :volume, :beer_id, :user_id, :rating
-  validate :session_is_set
+  validate :session_in_progress
   validates_inclusion_of :rating, :within => 1..5, :message => "must be between 1 and 5"
 
   before_validation :populate_session, :on => :create
@@ -35,7 +35,7 @@ private
   end
 
   # Validation
-  def session_is_set
-     self.errors[:session] << "CHEATER!!! You can't log drinks outside session times." if session.blank?
+  def session_in_progress
+     self.errors.add(:session, "must be in progress to log drinks.") if session.blank?
   end
 end
