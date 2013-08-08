@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20130808043314) do
     t.integer  "ibu"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "average_rating"
+    t.float    "average_rating",                         default: 0.0
     t.integer  "drinks_count"
   end
 
