@@ -2,8 +2,8 @@
     <b class="rating" style="background-color: rgba(255,192,0,<%= drink.rating / 5.0 %>)"><%= drink.rating %></b>
   <% if show_drink_details %>
     <h4><%= link_to drink.beer.name, drink.beer %></h4>
+    <span class="brewery"><%= drink.beer.brewery.name %></span>
   <% end %>
-  <span class="brewery"><%= drink.beer.brewery.name %></span>
   <p class="meta"><%= friendly_username(drink, current_user) %> drunk <b><%= drink.volume %>ml</b> of this <b><%= drink.beer.abv %>%</b> beer <%= time_ago_in_words drink.created_at %> ago.</p>
   <p class="notes"><%= drink.notes %></p>
 </div>
