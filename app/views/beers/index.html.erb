@@ -19,7 +19,7 @@
 
 <br />
 
-<table>
+<table class="beer-list">  
   <tr>
     <th>Beer</th>
     <th>Drinkers</th>
@@ -32,13 +32,13 @@
       <span class="beer-name"><%= link_to beer.name, beer %></span><br />
       <span class="brewery-name small"><%= beer.brewery.name %></span>
     </td>
-    <td>
+    <td class="value">
       <%= beer.drinks_count %>
     </td>
-    <td>
+    <td class="value">
       <%= "%0.1f" % beer.abv %>%
     </td>
-    <td>
+    <td class="value">
       <%= beer.average_rating %>
     </td>
   </tr>

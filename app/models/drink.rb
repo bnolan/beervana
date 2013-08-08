@@ -2,10 +2,10 @@ class Drink < ActiveRecord::Base
   belongs_to :beer, :counter_cache => true
   belongs_to :user
   validates_presence_of :volume, :beer_id, :user_id, :rating
-  validate :session_in_progress
+  # validate :session_in_progress
   validates_inclusion_of :rating, :within => 1..5, :message => "must be between 1 and 5"
 
-  before_validation :populate_session, :on => :create
+  # before_validation :populate_session, :on => :create
   after_save :update_beer_average_rating
 
   def alcohol_in_mls
