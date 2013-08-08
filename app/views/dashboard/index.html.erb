@@ -1,5 +1,5 @@
 <h1>
-  Beervana
+  Powerbeer
 </h1>
 
 <p>
@@ -7,7 +7,13 @@
 </p>
 
 <p class="meta">
-  There are <b><%= Beer.count %></b> beers, by <b><%= Brewery.count %></b> breweries, to try at Beervana. <b><%= User.count %></b> people are using this app. <b><%= Drink.count %></b> drinks have been drunk in total.
+  You are logged in as <b><%= current_user.name %></b>. 
+  
+  <% if current_user.drinks.any? %>
+    You have drunk <b><%= current_user.drinks.count %></b> beers by <b><%= current_user.drinks_brewery_count %></b> different breweries. You have drunk <b><%= current_user.drinks_volume_sum %>mL</b> of beer, and have probably consumed about <b><%= "%0.1f" % current_user.standard_drinks %></b> standard drinks.
+  <% else %>
+    <%= render :partial => 'app_meta' %>
+  <% end %>
 </p>
 
 <% if drink = current_user.drinks.last %>
@@ -32,3 +38,25 @@
   Leaderboard
 </h3>
 
+<table>
+  <tr>
+    <th>User</th>
+    <th>Std. Drinks</th>
+    <th>Taste</th>
+  </tr>
+<% User.all.sort_by(&:standard_drinks).reverse.each do |user| %>
+  <tr>
+    <td><%= link_to user.name, user %></td>
+    <td><%= "%0.1f" % user.standard_drinks %></td>
+    <td><%= number_to_percentage(user.taste * 100) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if current_user.drinks.any? %>
+  <p class="meta">
+    <%= render :partial => 'app_meta' %>
+  </p>
+<% end %>

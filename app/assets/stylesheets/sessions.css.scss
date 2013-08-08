@@ -171,3 +171,23 @@ h3.seperator{
   text-shadow: 1px 1px 1px white;
   padding: 4px 8px;
 }
+
+table{
+  font: inherit;
+  border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid #ccc;
+
+  th{
+    font-size: 0.7em;
+    color: #999;
+  }
+  
+  th,td{
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+    padding: 0 8px;
+  }
+}
