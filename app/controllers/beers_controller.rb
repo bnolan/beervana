@@ -1,7 +1,7 @@
 class BeersController < ApplicationController
 
   def index
-    @beers = Beer.all
+    @beers = params[:sort_by] == 'popular' ? Beer.top : Beer.order(:name)
   end
 
   def show
