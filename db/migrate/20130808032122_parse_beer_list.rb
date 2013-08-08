@@ -7,6 +7,9 @@ beers = "8Wired Brewing
   iStout Imperial Stout, 10.0%, BU 75
   Mighty Imperial Ale, 10.0%, BU 75
   Semiconductor Session IPA, 4.4% BU 30
+  Bumaye, 16.0%
+  Sæson, 7.0%
+  Grand Cru 2011, 11.0%
 Adnams
   Southwold Bitter, 4.1%
   Broadside (Premium Bitter), 6.3%
@@ -50,6 +53,10 @@ Emerson Brewery
   Brewer’s Reserve White Tail, 6.0%
   Brewer’s Reserve Jack of all Trades, 4.5%
   Brewer’s Reserve Clean Sweep, 5.2%
+  Dunkel, 4.9%
+  Bird Dog IPA, 6.5%
+  Taieri George Spice Ale, 6.8%
+  JP 2013 Belgian dark ale, 8.0%
 Epic Brewing Company
   Epicurean Coffee & Fig Stout 2013, 8.0%, BU 50
   Comet IPA, 6.3%, BU 45
@@ -100,6 +107,10 @@ Harrington’s Breweries
   Brewers’ Selection Imperial APA, 9.5%, BU 100
   The Rogue Hop Organic Pilsner, 5.0%, BU 45
   Brewers’ Selection IPA, 6.5%, BU 60
+  Brewers' SelecUon BalUc Porter, 8.5%
+  The Classy Red Extra Special Bitter, 5.2%
+  The Wobbly Boot Porter, 5.0%
+  Brewers' Selecton Weizenbock, 8.5%
 James Squire
   Four Wives (Pilsner), 5.0%
   150 Lashes (PA), 4.7%
@@ -133,6 +144,7 @@ Mac’s Issacs
   Issac’s Apple Cider, 5.0%
   Issac’s Pear Cider, 5.0%
   Issac’s Berry Cider, 5.0%
+  Steinlager Light, 2.5%
 McCashin’s Brewery – Stoke
   Cirrus – Wheat Beer, 5.0%, BU 15
   Pacific Northwest – Double PA, 5.7%, BU 40
@@ -284,7 +296,7 @@ Matilda Bay Brewing
   Alpha Pale Ale, 5.2%, BU 55
 Moo Brew
   Seasonal Stout, 8.0%, BU 65
-Mur rays
+Murrays
   Grand Cru, 8.8%
   Wild Thing, 10.0%
 Nail Brewery
