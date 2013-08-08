@@ -8,17 +8,9 @@
 </p>
 
 <p>
-  <%= link_to 'Alphabetical', beers_path(:sort_by => :name) %>
-</p>
-<p>
+  <%= link_to 'Alphabetical', beers_path(:sort_by => :name) %> | 
   <%= link_to 'Most Popular', beers_path(:sort_by => :popular) %>
 </p>
-
-<% @beers.top.each do |beer| %>
-  <p>
-  <%= link_to beer.name, beer %> from <%= beer.brewery.name %>
-  </p>
-<% end %>
 
 <table>
   <tr>
@@ -29,7 +21,7 @@
 <% @beers.each do |beer| %>
   <tr>
     <td>
-      <span class="beer-name"><%= beer.name %></span><br />
+      <span class="beer-name"><%= link_to beer.name, beer %></span><br />
       <span class="brewery-name small"><%= beer.brewery.name %></span>
     </td>
     <td>
