@@ -11,10 +11,12 @@
   There are <b><%= Beer.count %></b> beers from <b><%= Brewery.count %></b> breweries to try.
 </p>
 
-<p>
+<center>
   <%= link_to 'Alphabetical', beers_path(:sort_by => :name) %> | 
   <%= link_to 'Most Popular', beers_path(:sort_by => :popular) %>
-</p>
+</center>
+
+<br />
 
 <table>
   <tr>
