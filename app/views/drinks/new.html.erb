@@ -33,6 +33,10 @@
     if(beer.name.match(new RegExp(query, 'i'))){
       return true;
     }
+
+    if(beer.brewery.match(new RegExp(query, 'i'))){
+      return true;
+    }
     
     return false;
   }
@@ -41,6 +45,11 @@
     var query = input.val();
     
     suggestions.empty().show();
+    
+    if(query.length < 3){
+      // no point...
+      return;
+    }
     
     beers.forEach(function(beer){
       if(matches(beer, query)){
