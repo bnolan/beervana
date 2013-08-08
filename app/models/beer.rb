@@ -26,6 +26,10 @@ class Beer < ActiveRecord::Base
   def friendly_ibu
     "#{ibu} IBU" if ibu
   end
+  
+  def friendly_rating
+    average_rating.round(1)
+  end
 
   def as_json(*args)
     {
