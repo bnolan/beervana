@@ -1,0 +1,14 @@
+<h1>
+  Beers
+</h1>
+
+<p>
+  All beers
+</p>
+<% @beers.each do |beer| %>
+<p>
+<%= link_to beer.name, beer %> from <%= beer.brewery.name %>
+</p>
+<% end %>
+
+<%= link_to "See them all", beers_path %>
