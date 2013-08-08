@@ -1,5 +1,5 @@
 class Drink < ActiveRecord::Base
-  belongs_to :beer
+  belongs_to :beer, :counter_cache => true
   belongs_to :user
   validates_presence_of :volume, :beer_id, :user_id, :rating
   after_save :update_beer_average_rating
