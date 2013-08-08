@@ -197,7 +197,7 @@ Tuatara
   Heffe Wheat Beer, 5.0%, BU 15
   IPA, 5.0%, BU 45
   NZAPA, 6.0%, BU 48
-  Double Trouble US P.A, 9.0%, BU 67
+  Double Trouble US P.A, 9.0%, BU 167
   Stout, 7.0%, BU 60
 Zeffer Brewing Co
   Dry Apple Cider, 5.0%
