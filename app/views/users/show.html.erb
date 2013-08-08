@@ -8,13 +8,13 @@
 </h2>
 
 <p class="meta">
-  <%= @user.name %> has drunk <b><%= current_user.drinks.count %></b> beers 
+  <%= @user.name %> has drunk <b><%= @user.drinks.count %></b> beers 
   
-  by <b><%= current_user.drinks_brewery_count %></b> different breweries. 
+  by <b><%= @user.drinks_brewery_count %></b> different breweries. 
   
-  <%= @user.name %> has drunk <b><%= current_user.drinks_volume_sum %>mL</b> of beer, 
+  <%= @user.name %> has drunk <b><%= @user.drinks_volume_sum %>mL</b> of beer, 
   
-  and has probably consumed about <b><%= "%0.1f" % current_user.standard_drinks %></b> standard drinks.
+  and has probably consumed about <b><%= "%0.1f" % @user.standard_drinks %></b> standard drinks.
 </p>
 
 <h3 class="seperator">
