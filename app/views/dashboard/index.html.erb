@@ -49,6 +49,12 @@
 <% end %>
 </table>
 
+<h3 class="seperator">
+  Recent drinks
+</h3>
+
+<%= render :partial => "drinks/show", :collection => Drink.order('created_at desc').limit(20), :as => :drink, :locals => {:show_drink_details => true} %>
+
 <br />
 
 <% if current_user.drinks.any? %>
