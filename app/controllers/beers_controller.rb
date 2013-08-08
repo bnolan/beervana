@@ -2,11 +2,11 @@ class BeersController < ApplicationController
 
   def index
     @beers = if params[:sort_by] == 'abv'
-        Beer.order 'abv desc'
+        Beer.includes(:brewery).order 'abv desc'
       elsif params[:sort_by] == 'name'
-        Beer.order 'name asc'
+        Beer.includes(:brewery).order 'name asc'
       else
-        Beer.top
+        Beer.includes(:brewery).top
       end
   end
 
