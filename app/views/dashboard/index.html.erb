@@ -25,16 +25,9 @@
 <% end %>
 
 <h3 class="seperator">
-  Top ranked beers
+  <%= link_to "Top ranked beers", beers_path %>
 </h3>
 
-<% Beer.top.each do |beer| %>
-<p>
-<%= beer.name %> from <%= beer.brewery.name %>. <%= beer.drinks_count %> people gave it <%= beer.average_rating %> out of 5 cold ones.
-</p>
-<% end %>
-
-<%= link_to "See them all", beers_path %>
 
 <h3 class="seperator">
   Leaderboard

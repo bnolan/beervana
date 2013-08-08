@@ -1,14 +1,30 @@
 <h1>
+  <%= link_to "Home", root_path, :class => 'button left' %>
   Beers
 </h1>
 
 <p>
-  All beers
+  There are <b><%= Beer.count %></b> beers from <b><%= Brewery.count %></b> breweries to try.
 </p>
-<% @beers.each do |beer| %>
-<p>
-<%= link_to beer.name, beer %> from <%= beer.brewery.name %>
-</p>
-<% end %>
 
-<%= link_to "See them all", beers_path %>
+<table>
+  <tr>
+    <th>Beer</th>
+    <th>Drinkers</th>
+    <th>Rating</th>
+  </tr>
+<% @beers.each do |beer| %>
+  <tr>
+    <td>
+      <span class="beer-name"><%= beer.name %></span><br />
+      <span class="brewery-name small"><%= beer.brewery.name %></span>
+    </td>
+    <td>
+      <%= beer.drinks_count %>
+    </td>
+    <td>
+      <%= beer.average_rating %>
+    </td>
+  </tr>
+<% end %>
+</table>

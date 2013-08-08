@@ -3,7 +3,7 @@ class Beer < ActiveRecord::Base
   has_many :drinks
 
   def self.top
-    where(["drinks_count >= ?", 3]).order(:average_rating => :desc, :drinks_count => :desc).limit(10)
+    where(["drinks_count >= ?", 0]).order(:average_rating => :desc, :drinks_count => :desc).limit(10)
   end
 
   def update_average_rating

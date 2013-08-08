@@ -2,6 +2,6 @@
   <b class="rating"><%= drink.rating %></b>
   <h4><%= drink.beer.name %></h4>
   <span class="brewery"><%= drink.beer.brewery.name %></span>
-  <p class="meta">You drunk <b><%= drink.volume %>ml</b> of this beer <%= time_ago_in_words drink.beer.created_at %> ago.</p>
+  <p class="meta">You drunk <b><%= drink.volume %>ml</b> of this beer <%= time_ago_in_words drink.created_at %> ago.</p>
   <p class="notes"><%= drink.notes %></p>
 </div>

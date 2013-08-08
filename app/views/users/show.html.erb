@@ -1,0 +1,24 @@
+<h1>
+  <%= link_to "Home", root_path, :class => 'button left' %>
+  User
+</h1>
+
+<h2>
+  <%= @user.name %>
+</h2>
+
+<p class="meta">
+  <%= @user.name %> has drunk <b><%= current_user.drinks.count %></b> beers 
+  
+  by <b><%= current_user.drinks_brewery_count %></b> different breweries. 
+  
+  <%= @user.name %> has drunk <b><%= current_user.drinks_volume_sum %>mL</b> of beer, 
+  
+  and has probably consumed about <b><%= "%0.1f" % current_user.standard_drinks %></b> standard drinks.
+</p>
+
+<h3 class="seperator">
+  Recent drinks:
+</h3>
+
+<%= render :partial => 'drinks/show', :collection => @user.drinks.order('created_at desc'), :as => :drink, :locals => {:show_drink_details => true} %>
