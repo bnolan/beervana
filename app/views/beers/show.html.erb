@@ -9,7 +9,14 @@
 </h3>
 
 <h4>
-  By <%= @beer.brewery.name %>
+  <%= @beer.brewery.name %>
 </h4>
+
+<p>
+  <%= @beer.friendly_abv %>
+</p>
+<p>
+  <%= @beer.friendly_ibu %> 
+</p>
 
 <%= render :partial => "/drinks/show", :collection => @beer.recent_drinks, :as => :drink, :locals => {:show_drink_details => false} %>

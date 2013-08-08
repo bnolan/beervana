@@ -18,6 +18,14 @@ class Beer < ActiveRecord::Base
   def update_average_rating
     update_attributes(:average_rating => drinks.average(:rating))
   end
+  
+  def friendly_abv
+    "#{abv}%" if abv
+  end
+  
+  def friendly_ibu
+    "#{ibu} IBU" if ibu
+  end
 
   def as_json(*args)
     {
