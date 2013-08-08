@@ -48,6 +48,7 @@ Beervana::Application.routes.draw do
   #   end
 
   get 'signout' => 'sessions#destroy'
+  get 'leaderboard' => 'dashboard#leaderboard', :as => :leaderboard
   
   resources :sessions
   resources :drinks
