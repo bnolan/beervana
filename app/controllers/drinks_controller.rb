@@ -1,4 +1,8 @@
 class DrinksController < ApplicationController
+
+  def new
+    @drink = Drink.new :beer_id => params[:beer_id]
+  end
   
   def create
     @drink = current_user.drinks.build drink_params

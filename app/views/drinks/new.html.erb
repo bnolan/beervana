@@ -4,16 +4,16 @@
   <button class="right" onclick="$('form').submit()">Save</button>
 </h1>
 
-<%= form_for Drink.new do |f| %>
+<%= form_for @drink do |f| %>
   <p class="f">
-    <%= text_field_tag :beer, '', :placeholder => "Name of beer", :autocomplete => "off", :autocapitalize => "off", :autocorrect => "off" %>
+    <%= text_field_tag :beer, @drink.beer.present?? @drink.beer.name : '', :placeholder => "Name of beer", :autocomplete => "off", :autocapitalize => "off", :autocorrect => "off" %>
     <%= f.hidden_field :beer_id %>
   </p>
   
   <div id="suggestions"></div>
   
   <p class="f">
-    <%= f.select :rating, ['Rating',1,2,3,4,5], :selected => 3 %>
+    <%= f.select :rating, [["1 - Ew Yuck", 1],["2 - Okay",2],["3 - Decent",3],["4 - Good",4],["5 - Freaking Awesome",5]], :selected => 3 %>
   </p>
   
   <p class="f">

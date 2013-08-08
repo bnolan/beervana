@@ -10,7 +10,7 @@
   You are logged in as <b><%= current_user.name %></b>. 
   
   <% if current_user.drinks.any? %>
-    You have drunk <b><%= current_user.drinks.count %></b> beers by <b><%= current_user.drinks_brewery_count %></b> different breweries. You have drunk <b><%= current_user.drinks_volume_sum %>mL</b> of beer, and have probably consumed about <b><%= "%0.1f" % current_user.standard_drinks %></b> standard drinks.
+    You have drunk <b><%= current_user.drinks.count %></b> beers by <b><%= current_user.drinks_brewery_count %></b> different breweries. You have drunk <b><%= current_user.drinks_volume_sum %>mL</b> of beer and roughly <b><%= "%0.1f" % current_user.standard_drinks %></b> standard drinks.
   <% else %>
     <%= render :partial => 'app_meta' %>
   <% end %>
