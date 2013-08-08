@@ -28,7 +28,7 @@
   Top ranked beers
 </h3>
 
-<%= render :partial => 'beers/show', :collection => Beer.top, :as => :beer %>
+<%= render :partial => 'beers/show', :collection => Beer.top(5), :as => :beer %>
 
 <%= link_to "See them all", beers_path %>
 

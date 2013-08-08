@@ -5,7 +5,7 @@
 <p>
   All beers
 </p>
-<% @beers.each do |beer| %>
+<% @beers.top.each do |beer| %>
 <p>
 <%= link_to beer.name, beer %> from <%= beer.brewery.name %>
 </p>
