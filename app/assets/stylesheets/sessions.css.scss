@@ -87,3 +87,21 @@ small{
   display: block;
   padding: 8px 0;
 }
+
+#suggestions{
+  li{
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 0 8px;
+    font-size: 0.8em;
+    
+    b{
+      display: block;
+    }
+    
+    span{
+      font-size: 0.8em;
+      color: #aaa;
+    }
+  }
+}

@@ -6,4 +6,12 @@ class Beer < ActiveRecord::Base
     update_attributes(:average_rating => drinks.average(:rating))
   end
 
+  def as_json(*args)
+    {
+      :id => id,
+      :name => name,
+      :brewery => brewery.name
+    }
+  end
+  
 end

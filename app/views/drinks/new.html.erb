@@ -5,8 +5,11 @@
 
 <%= form_for Drink.new do |f| %>
   <p class="f">
-    <%= f.select :beer_id, ['Beer'] + Beer.all.collect { |b| [b.name,b.id] } %>
+    <%= text_field_tag :beer, '', :placeholder => "Name of beer" %>
+    <%= f.hidden_field :beer_id %>
   </p>
+  
+  <div id="suggestions"></div>
   
   <p class="f">
     <%= f.select :rating, ['Rating',1,2,3,4,5] %>
@@ -20,3 +23,36 @@
     <%= f.text_area :notes, :placeholder => "Tasting notes" %>
   </p>
 <% end %>
+
+<script>
+  var beers = <%= Beer.all.to_json.html_safe %>,
+    input = $("input#beer"),
+    suggestions = $("#suggestions");
+  
+  function matches(beer, query){
+    if(beer.name.match(new RegExp(query, 'i'))){
+      return true;
+    }
+    
+    return false;
+  }
+  
+  input.keyup(function(){
+    var query = input.val();
+    
+    suggestions.empty().show();
+    
+    beers.forEach(function(beer){
+      if(matches(beer, query)){
+        var li = $("<li />").html("<b>" + beer.name + "</b><span>" + beer.brewery + "</span>").appendTo(suggestions);
+        
+        li.click(function(){
+          input.val(beer.name);
+          $("#drink_beer_id").val(beer.id);
+          $("#suggestions").hide();
+          $(":focus").blur();
+        })
+      }
+    });
+  });
+</script>
