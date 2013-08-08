@@ -25,7 +25,7 @@
 <% end %>
 
 <h3 class="seperator">
-  <%= link_to "Top ranked beers", beers_path %>
+  <%= link_to "Most popular beers", beers_path %>
 </h3>
 
 <%= render :partial => 'beers/show', :collection => Beer.top(5), :as => :beer %>
