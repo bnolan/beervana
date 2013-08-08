@@ -1,5 +1,5 @@
-<div class="drink last-drink">
-    <b class="rating"><%= drink.rating %></b>
+<div class="drink inline-drink">
+    <b class="rating" style="background-color: rgba(255,192,0,<%= drink.rating / 5.0 %>)"><%= drink.rating %></b>
   <% if show_drink_details %>
     <h4><%= drink.beer.name %></h4>
   <% end %>
