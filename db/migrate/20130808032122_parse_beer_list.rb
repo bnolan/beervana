@@ -76,7 +76,7 @@ Garage Project
   Smoke & Mirrors, 6.2%
   Sauvin Nouveau, 7.8%
   Cockswain’s Extraordinary Ordinary (Cask conditioned and handpulled), 3.4%
-  Spezial K (German pitch barrel, gravity poured), 5.1%
+  Spezial K (German gravity poured pitch barrel), 5.1%
 Garage Project Workshop
   Hot Buttered Bastard Rye, 13.0%
   Fire Poker Blended Cockswain’s Courage Porter, 10.5%
@@ -225,8 +225,8 @@ The Leigh Brewing Company Ltd
   Pilsner, 4.5%, BU 27
   12 Gauge Strong Lager, 6.5%, BU 32
 Wigram Brewing Company
-  Harvard Honey Ale, BU 6.0%
-  Mustang Pale Ale, BU 5.0%
+  Harvard Honey Ale, 6.0%
+  Mustang Pale Ale, 5.0%
 Zeelandt Brewing Co
   Kolsch Style, 5.0%, BU 20
   Pale Ale, 5.0%, BU 32
@@ -298,7 +298,6 @@ Two Birds
   Golden Ale, 4.4%, BU 22".split("\n")
 
   beers.each do |beer_or_brewery|
-    puts beer_or_brewery[0..1].inspect
     if beer_or_brewery[0..1] != "  "
       brewery_name = beer_or_brewery
       @current_brewery = Brewery.create!(:name => brewery_name)
@@ -307,7 +306,7 @@ Two Birds
       beer = Beer.new(:name => name,
                    :brewery => @current_brewery)
       beer.abv = abv if abv
-      beer.ibu = ibu if ibu
+      beer.ibu = ibu[3..-1] if ibu
       beer.save!
     end
   end
