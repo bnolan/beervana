@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808042016) do
+ActiveRecord::Schema.define(version: 20130808043314) do
 
   create_table "beers", force: true do |t|
     t.string   "name"
-    t.decimal  "abv"
+    t.decimal  "abv",            precision: 3, scale: 1
     t.integer  "brewery_id"
     t.integer  "ibu"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "average_rating"
+    t.integer  "drinks_count"
   end
 
   create_table "breweries", force: true do |t|

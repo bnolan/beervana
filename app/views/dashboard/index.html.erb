@@ -6,5 +6,14 @@
   <%= link_to "Log a drink", new_drink_path %>
 </p>
 
+<p>
+  Choice beers
+</p>
+<% Beer.top.each do |beer| %>
+<p>
+<%= beer.name %> from <%= beer.brewery.name %>. <%= beer.drinks_count %> people gave it <%= beer.average_rating %> out of 5 cold ones.
+</p>
+<% end %>
+
 
 
