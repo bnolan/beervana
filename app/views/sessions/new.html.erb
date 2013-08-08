@@ -1,0 +1,21 @@
+<h1>
+  Beervana
+</h1>
+
+<p>
+  The unofficial beervana app made by the friendly developers 
+  at <%= link_to "Powershop", "http://www.powershop.com" %>. We are hiring.
+</p>
+
+<%= form_for User.new, :url => sessions_path do |f| %>
+  <p>
+    <%= f.text_field :name, :placeholder => "Your twitter name" %>
+    <br />
+    <small>If you don't have a twitter name, you can just make up a username for the purposes of this app</small>
+  </p>
+  
+  <p>
+    <%= submit_tag "Login" %>
+  </p>
+<% end %>
+  
