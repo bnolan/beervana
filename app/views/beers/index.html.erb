@@ -13,7 +13,8 @@
 
 <center>
   <%= link_to 'Alphabetical', beers_path(:sort_by => :name) %> | 
-  <%= link_to 'Most Popular', beers_path(:sort_by => :popular) %>
+  <%= link_to 'Most Popular', beers_path(:sort_by => :popular) %> | 
+  <%= link_to 'ABV', beers_path(:sort_by => :abv) %>
 </center>
 
 <br />
@@ -22,6 +23,7 @@
   <tr>
     <th>Beer</th>
     <th>Drinkers</th>
+    <th>ABV</th>
     <th>Rating</th>
   </tr>
 <% @beers.each do |beer| %>
@@ -32,6 +34,9 @@
     </td>
     <td>
       <%= beer.drinks_count %>
+    </td>
+    <td>
+      <%= "%0.1f" % beer.abv %>%
     </td>
     <td>
       <%= beer.average_rating %>

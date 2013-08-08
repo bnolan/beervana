@@ -1,7 +1,13 @@
 class BeersController < ApplicationController
 
   def index
-    @beers = params[:sort_by] == 'popular' ? Beer.top : Beer.order(:name)
+    @beers = if params[:sort_by] == 'abv'
+        Beer.order 'abv desc'
+      elsif params[:sort_by] == 'name'
+        Beer.order 'name asc'
+      else
+        Beer.top
+      end
   end
 
   def show
