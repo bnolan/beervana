@@ -63,6 +63,10 @@ textarea{
   height: 240px;
 }
 
+#user_name{
+  border: 1px solid #ccc;
+}
+
 input[type=submit]{
   background: #0af;
   border-radius: 5px;
@@ -74,6 +78,7 @@ input[type=submit]{
   color: white;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
+
 
 small{
   color: #999;
