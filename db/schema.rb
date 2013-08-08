@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808043314) do
+ActiveRecord::Schema.define(version: 20130808085317) do
 
   create_table "beers", force: true do |t|
     t.string   "name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20130808043314) do
     t.integer  "ibu"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "average_rating",                         default: 0.0
+    t.float    "average_rating"
     t.integer  "drinks_count"
   end
 
