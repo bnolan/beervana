@@ -6,7 +6,7 @@
 
 <%= form_for Drink.new do |f| %>
   <p class="f">
-    <%= text_field_tag :beer, '', :placeholder => "Name of beer" %>
+    <%= text_field_tag :beer, '', :placeholder => "Name of beer", :autocomplete => "off", :autocapitalize => "off", :autocorrect => "off" %>
     <%= f.hidden_field :beer_id %>
   </p>
   
@@ -52,6 +52,8 @@
       return;
     }
     
+    var results = [];
+    
     beers.forEach(function(beer){
       if(matches(beer, query)){
         var li = $("<li />").html("<b>" + beer.name + "</b><span>" + beer.brewery + "</span>").appendTo(suggestions);
@@ -62,7 +64,13 @@
           $("#suggestions").hide();
           $(":focus").blur();
         })
+        
+        results.push(beer);
       }
     });
+    
+    if(results.length == []){
+      $("<li />").html("<b>Not found</b><small>Could not find any matching beers, try search by brewery name</small>").appendTo(suggestions);
+    }
   });
 </script>

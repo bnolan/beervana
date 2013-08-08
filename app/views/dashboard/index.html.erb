@@ -18,7 +18,7 @@
 
 <% if drink = current_user.drinks.last %>
   <h3 class="seperator">
-    Your last drink:
+    <%= link_to "Your last drink", current_user %>
   </h3>
 
   <%= render :partial => 'drinks/show', :locals => {:drink => drink} %>
