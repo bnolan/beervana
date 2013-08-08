@@ -6,6 +6,10 @@ class Beer < ActiveRecord::Base
     where(["drinks_count >= ?", 3]).order(:average_rating => :desc, :drinks_count => :desc).limit(10)
   end
 
+  def recent_drinks
+    drinks.order(:id => :desc).limit(100)
+  end
+
   def update_average_rating
     update_attributes(:average_rating => drinks.average(:rating))
   end

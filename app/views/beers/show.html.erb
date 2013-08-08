@@ -1,7 +1,10 @@
 <h1>
-  Beers
+  Beer
 </h1>
 
 <p>
   <%= @beer.name %> by <%= @beer.brewery.name %>
 </p>
+
+
+<%= render :partial => "/drinks/show", :collection => @beer.recent_drinks, :as => :drink, :locals => {:show_drink_details => false} %>
