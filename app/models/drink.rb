@@ -10,7 +10,7 @@ class Drink < ActiveRecord::Base
 
   def alcohol_in_mls
     # @proglottis pointed out that this isn't correct, but it's an approximation
-    volume * (beer.abv / 100.0)
+    volume * ((beer.abv || 5) / 100.0)
   end
 
   SESSIONS = {
