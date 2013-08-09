@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_presence_of :name
   has_many :drinks
-  
+
+  def password_less?
+    true
+  end
+
   def standard_drinks
     drinks.collect(&:alcohol_in_mls).sum / 10.0
   end
