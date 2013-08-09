@@ -4,7 +4,7 @@ class Beer < ActiveRecord::Base
 
   def self.top(limit = 500)
     max_drinks = maximum(:drinks_count)
-    order("(average_rating * drinks_count/#{max_drinks}) DESC", :name => :asc).limit(limit).includes(:brewery)
+    order("(average_rating * drinks_count/#{max_drinks}) + average_rating DESC", :name => :asc).limit(limit).includes(:brewery)
   end
 
   def self.alpha
