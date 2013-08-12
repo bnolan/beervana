@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_filter :requires_current_user
+  before_filter :requires_current_user, :only => [:index]
   
   def index
     # leaderboard stuff...
