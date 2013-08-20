@@ -1,23 +1,26 @@
 class SessionsController < ApplicationController
-  
-  def create
-    user = User.new(user_params)
-    
-    if user.save
-      session[:user_id] = user.id
-      redirect_to root_path
-    else
-      render :text => "Error - user name " + user.errors[:name].to_sentence
-    end
-  end
-  
+  skip_before_filter :verify_authenticity_token, :only => [:callback]
+
   def destroy
     session[:user_id] = nil
     redirect_to new_session_path
   end
-  
-  def user_params
-    params.require(:user).permit(:name)
+
+  def callback
+    omniauth = request.env['omniauth.auth']
+    authhash = {
+      :uid => omniauth['uid'],
+      :nickname => omniauth['info']['nickname'],
+      :name => omniauth['info']['name'],
+    }
+    user = User.find_or_initialize_by(:uid => authhash['uid'])
+    user.attributes = authhash
+    user.save!
+    session[:user_id] = user.id
+    redirect_to root_path
   end
-  
+
+  def failure
+    redirect_to root_path
+  end
 end
