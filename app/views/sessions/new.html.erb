@@ -7,15 +7,6 @@
   at <%= link_to "Powershop", "http://www.powershop.com" %>. We are <%= link_to "hiring", "http://www.powershop.com/culture/" %>.
 </p>
 
-<%= form_for User.new, :url => sessions_path do |f| %>
-  <p>
-    <%= f.text_field :name, :placeholder => "Your twitter name" %>
-    <br />
-    <small>If you don't have a twitter name, you can just make up a username for the purposes of this app</small>
-  </p>
-  
-  <p>
-    <%= submit_tag "Login" %>
-  </p>
-<% end %>
-  
+<p>
+  <%= link_to 'Login with Twitter', '/auth/twitter', :class => 'button' %>
+</p>
