@@ -1,28 +1,32 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the beer-rating app that @ezzaf, @bnolan, @proglottis, @newportandy and @kuahyeow hacked up for Beervana 2013. It is a mobile-first site for recording and rating all the beers that you drink. It has some calculations for amount consumed, and a leaderboard and newsfeed so you can see what everyone else is drinking. It also lets you rate the beers and an average rating for the beers is calculated. This was a Powershop 10% time project.
 
-Things you may want to cover:
+== Hosting
 
-* Ruby version
+It works nicely on Heroku.
 
-* System dependencies
+== Licenced under the BSD Licence
 
-* Configuration
+Copyright (c) 2013, Powershop
+All rights reserved.
 
-* Database creation
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met: 
 
-* Database initialization
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer. 
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution. 
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
