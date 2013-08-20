@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
   has_many :drinks
   
   def standard_drinks
-    drinks.collect(&:alcohol_in_mls).sum / 10.0
+    begin
+      drinks.collect(&:alcohol_in_mls).sum / 10.0
+    rescue
+      0
+    end
   end
   
   def taste

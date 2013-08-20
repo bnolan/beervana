@@ -7,6 +7,10 @@ class DrinksController < ApplicationController
   def create
     @drink = current_user.drinks.build drink_params
     
+    if @drink.beer.blank? and params[:beer].present?
+      @drink.beer = Brewery.find_by_name('Unknown').beers.create!(:name => params[:beer])
+    end
+    
     if @drink.save
       flash[:message] = "Your drink was saved"
       redirect_to root_path
