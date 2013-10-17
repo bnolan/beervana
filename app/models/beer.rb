@@ -20,7 +20,11 @@ class Beer < ActiveRecord::Base
   end
   
   def friendly_abv
-    "#{abv}%" if abv
+    if abv and abv > 0.0
+      sprintf("%0.1f%", abv) 
+    else
+      "?"
+    end
   end
   
   def friendly_ibu

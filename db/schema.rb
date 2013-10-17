@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130810072931) do
+ActiveRecord::Schema.define(version: 20131017080859) do
 
   create_table "beers", force: true do |t|
     t.string   "name"
-    t.decimal  "abv"
+    t.decimal  "abv",            precision: 3, scale: 1
     t.integer  "brewery_id"
     t.integer  "ibu"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "average_rating"
+    t.float    "average_rating",                         default: 0.0
     t.integer  "drinks_count"
   end
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20130810072931) do
     t.datetime "updated_at"
     t.string   "uid"
     t.string   "nickname"
+    t.string   "password"
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true

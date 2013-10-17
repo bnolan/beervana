@@ -1,12 +1,26 @@
 <h1>
-  Beervana
+  Pacific Beer Expo
+  <button class="right" onclick="$('form').submit()">Login</button>
 </h1>
 
 <p>
-  The unofficial beervana app made by the friendly developers 
-  at <%= link_to "Powershop", "http://www.powershop.com" %>. We are <%= link_to "hiring", "http://www.powershop.com/culture/" %>.
+  The unofficial Pacific Beer Expo app. Create an account or login using
+  the form below.
 </p>
 
-<p>
+<%= form_tag sessions_path do %>
+
+  <hr />
+  
+  <p class="f">
+    <%= text_field_tag :name, '', :placeholder => "Username" %>
+  </p>
+  
+  <p class="f">
+    <%= password_field_tag :password, '', :placeholder => "Password" %>
+  </p>
+<% end %>
+  
+<!-- <p>
   <%= link_to 'Login with Twitter', '/auth/twitter', :class => 'button' %>
-</p>
+</p> -->
