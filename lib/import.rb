@@ -6,7 +6,7 @@ class Import
     Beer.delete_all
     Brewery.delete_all
     
-    CSV.foreach(Rails.root.to_s + "/db/beers.csv") do |row|
+    CSV.foreach(Rails.root.to_s + "/db/new-beers.csv") do |row|
       next if row.first == 'Brewery' # skip header row
       
       (brewery_name, beer_name, abv) = row
