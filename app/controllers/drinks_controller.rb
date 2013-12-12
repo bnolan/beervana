@@ -1,5 +1,11 @@
 class DrinksController < ApplicationController
 
+  def index
+    @drinks = Drink.order('created_at desc').limit(100)
+
+    render :json => @drinks
+  end
+  
   def new
     @drink = Drink.new :beer_id => params[:beer_id]
   end
