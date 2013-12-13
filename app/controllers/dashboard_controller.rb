@@ -4,4 +4,9 @@ class DashboardController < ApplicationController
   def index
     # leaderboard stuff...
   end
+
+  def leaderboard
+  	@users = User.all.sort_by(&:standard_drinks).reverse
+  end
+
 end
