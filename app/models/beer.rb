@@ -36,11 +36,19 @@ class Beer < ActiveRecord::Base
   end
 
   def as_json(*args)
-    {
+    result = {
       :id => id,
       :name => name,
-      :brewery => brewery.name
+      :brewery => brewery.name,
+      :average_rating => average_rating,
+      :abv => abv,
+      :drink_count => drinks.count
     }
+
+    if args.first[:detailed]
+      result[:drinks] = drinks
+    end
+
+    result
   end
-  
 end
