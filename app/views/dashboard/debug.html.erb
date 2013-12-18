@@ -1,0 +1,19 @@
+<!-- only used in development mode -->
+
+<button onclick="postDrink()">postDrink</button>
+
+<script>
+	var data = { drink : { beer_id : <%= Beer.first.id %>, volume : 100, rating : 3, notes : "Lorem ipsum..." } };
+
+	function postDrink(){
+		$.ajax({
+			type : "POST",
+			url : '/drinks',
+			data : data,
+			success : function(data){
+				alert(JSON.stringify(data));
+			},
+			dataType : 'json'
+		});
+	}
+</script>

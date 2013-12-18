@@ -13,11 +13,18 @@ class DrinksController < ApplicationController
     
     if @drink.save
       flash[:message] = "Your drink was saved"
-      redirect_to root_path
-    elsif @drink.errors[:beer_id].any?
-      render :text => "Error: Your beer was not found, please search again and select one of the beers from the drop down"
+
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => { :success => true, :drink => @drink } }
+      end
     else
-      render :text => "Error: " + @drink.errors.collect { |k,v| [k,v].join(" ") }.join(', ')
+      message = "Error: " + @drink.errors.collect { |k,v| [k,v].join(" ") }.join(', ')
+
+      respond_to do |format|
+        format.html { render :text => message }
+        format.json { render :json => { :success => false, :message => message } }
+      end
     end
   end
 
