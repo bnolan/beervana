@@ -9,6 +9,8 @@ group :development do
   gem 'pg'
 end
 
+gem 'statistics2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
 

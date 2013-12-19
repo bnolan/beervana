@@ -1,10 +1,11 @@
 class Beer < ActiveRecord::Base
+  require 'statistics2'
   belongs_to :brewery
   has_many :drinks
 
   def self.top(limit = 500)
     max_drinks = maximum(:drinks_count) || 0
-    order("(average_rating * drinks_count/#{max_drinks}) + average_rating DESC", :name => :asc).limit(limit).includes(:brewery)
+    order("average_rating DESC", :name => :asc).limit(limit).includes(:brewery)
   end
 
   def self.alpha
@@ -15,8 +16,34 @@ class Beer < ActiveRecord::Base
     drinks.order(:id => :desc).limit(100)
   end
 
+  # Using "Lower bound of Wilson score confidence interval for a Bernoulli parameter" from here 
+  #     http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
+  # I'm not sure that I'm converting the 5-star rating to a normalized 0-1 value correctly. Seems
+  # to provide better results than drinks.average(&:rating).
+  def ci_lower_bound(pos, n, confidence)
+      if n == 0
+          return 0
+      end
+      z = Statistics2.pnormaldist(1-(1-confidence)/2)
+      phat = 1.0*pos/n
+      (phat + z*z/(2*n) - z * Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
+  end
+
+  def calculate_average_rating
+    if drinks.any?
+      begin
+        p = drinks.collect { |d| (d.rating.to_f - 2.5) / 2.5 }.sum
+        ci_lower_bound(p, drinks.count, 0.9) * 2.5 + 2.5
+      rescue
+        3.0 # fixme
+      end
+    else
+      3.0
+    end
+  end
+
   def update_average_rating
-    update_attributes(:average_rating => drinks.average(:rating))
+    update_attributes(:average_rating => calculate_average_rating)
   end
   
   def friendly_abv
