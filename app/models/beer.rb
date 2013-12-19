@@ -35,10 +35,10 @@ class Beer < ActiveRecord::Base
         p = drinks.collect { |d| (d.rating.to_f - 2.5) / 2.5 }.sum
         ci_lower_bound(p, drinks.count, 0.9) * 2.5 + 2.5
       rescue
-        3.0 # fixme
+        2.5 # fixme
       end
     else
-      3.0
+      2.5
     end
   end
 
