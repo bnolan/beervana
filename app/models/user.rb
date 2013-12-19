@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   def self.hash_password(passwd)
     Digest::SHA1.hexdigest("salty-hash-rainbow-table-#{passwd}")
   end
+
+  def password_is?(passwd)
+    User.hash_password(passwd) == password
+  end
   
   def standard_drinks
     begin

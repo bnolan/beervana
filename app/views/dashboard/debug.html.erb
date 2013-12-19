@@ -3,7 +3,7 @@
 <button onclick="postDrink()">postDrink</button>
 
 <script>
-	var data = { drink : { beer_id : <%= Beer.first.id %>, volume : 100, rating : 3, notes : "Lorem ipsum..." } };
+	var data = { username : 'testuser', password : 'testuser', drink : { beer_id : <%= Beer.first.id %>, volume : 100, rating : 3, notes : "Lorem ipsum..." } };
 
 	function postDrink(){
 		$.ajax({
