@@ -30,16 +30,24 @@ class Beer < ActiveRecord::Base
   end
 
   def calculate_average_rating
-    if drinks.any?
-      begin
-        p = drinks.collect { |d| (d.rating.to_f - 2.5) / 2.5 }.sum
-        ci_lower_bound(p, drinks.count, 0.9) * 2.5 + 2.5
-      rescue
-        2.5 # fixme
-      end
+    i = 10 # minimum number of votes required before we go all average
+
+    if drinks.count >= i
+      drinks.collect(&:rating).sum / drinks.count.to_f
     else
-      2.5
+      (drinks.collect(&:rating).concat ([3.0] * (i-drinks.count))).sum / i.to_f
     end
+    # if drinks.any?
+
+    #   begin
+    #     p = drinks.collect { |d| (d.rating.to_f - 2.5) / 2.5 }.sum
+    #     ci_lower_bound(p, drinks.count, 0.9) * 2.5 + 2.5
+    #   rescue
+    #     3.0 # fixme
+    #   end
+    # else
+    #   3.0
+    # end
   end
 
   def update_average_rating

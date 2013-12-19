@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017080859) do
+ActiveRecord::Schema.define(version: 20131219013548) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "beers", force: true do |t|
     t.string   "name"
@@ -50,6 +53,6 @@ ActiveRecord::Schema.define(version: 20131017080859) do
     t.string   "password"
   end
 
-  add_index "users", ["uid"], name: "index_users_on_uid", unique: true
+  add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
 
 end
