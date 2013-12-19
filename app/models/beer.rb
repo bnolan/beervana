@@ -75,7 +75,8 @@ class Beer < ActiveRecord::Base
     result = {
       :id => id,
       :name => name,
-      :brewery => brewery.name,
+      :brewery_name => brewery.name,
+      :brewery_id => brewery.id,
       :average_rating => average_rating,
       :abv => abv,
       :drink_count => drinks.count
