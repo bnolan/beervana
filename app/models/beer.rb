@@ -29,6 +29,7 @@ class Beer < ActiveRecord::Base
       (phat + z*z/(2*n) - z * Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
   end
 
+  # Hacked this up, which makes sense to me intuitively (as a non statistics-doing developer)
   def calculate_average_rating
     i = 10 # minimum number of votes required before we go all average
 

@@ -1,23 +1,42 @@
 class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:callback]
 
+  # This isn't great and should be refactored
   def create
-    name = params[:name]
-    password = User.hash_password(params[:password])
+    name = params[:name] || params[:username] # cough, ahem.
+    password = params[:password]
     
-    user = User.find_by_name(params[:name])
+    user = User.find_by_name(name)
     
-    if user and user.password == password
+    if user and user.password_is? password
       session[:user_id] = user.id
-      redirect_to root_path
+
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => { :success => true, :user => user } }
+      end
     elsif user
-      render :text => "Username in use, or password was incorrect. Go back and try again."
-    elsif name.present? and params[:password].present?
-      user = User.create! :name => name, :password => password
+      message = "Username in use, or password was incorrect. Go back and try again."
+
+      respond_to do |format|
+        format.html { render :text => message }
+        format.json { render :json => { :success => false, :message => message } }
+      end
+    elsif name.present? and password.present?
+      user = User.create! :name => name, :password => User.hash_password(password)
       session[:user_id] = user.id
-      redirect_to root_path
+
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { render :json => { :success => true, :user => user } }
+      end
     else
-      render :text => "Invalid username or password. Go back and try again."
+      message = "Invalid username or password. Go back and try again."
+
+      respond_to do |format|
+        format.html { render :text => message }
+        format.json { render :json => { :success => false, :message => message } }
+      end
     end
   end
   

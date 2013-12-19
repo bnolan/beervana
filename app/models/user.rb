@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
     end
   end
   
+  # trololol
+  
   def taste
     if drinks.any?
       0.5 + 
@@ -38,5 +40,12 @@ class User < ActiveRecord::Base
     drinks.collect(&:volume).sum
   end
   
-  
+  def as_json(*params)  
+    {
+      :name => name,
+      :id => id,
+      :standard_drinks => standard_drinks,
+      :taste => taste
+    }
+  end
 end

@@ -2,10 +2,15 @@
 
 <button onclick="postDrink()">postDrink</button>
 
+<button onclick="postToLogin('testuser', 'testuser')">postToLogin login</button>
+<button onclick="postToLogin('testuser', 'badpass')">postToLogin badpass</button>
+<button onclick="postToLogin('User' + parseInt(Math.random() * 1000), 'password')">postToLogin newuser</button>
+
 <script>
-	var data = { username : 'testuser', password : 'testuser', drink : { beer_id : <%= Beer.first.id %>, volume : 100, rating : 3, notes : "Lorem ipsum..." } };
 
 	function postDrink(){
+		var data = { username : 'testuser', password : 'testuser', drink : { beer_id : <%= Beer.first.id %>, volume : 100, rating : 3, notes : "Lorem ipsum..." } };
+
 		$.ajax({
 			type : "POST",
 			url : '/drinks',
@@ -15,5 +20,20 @@
 			},
 			dataType : 'json'
 		});
+	}
+
+	function postToLogin(username, password){
+		var data = { username : username, password : password };
+
+		$.ajax({
+			type : "POST",
+			url : '/sessions',
+			data : data,
+			success : function(data){
+				alert(JSON.stringify(data));
+			},
+			dataType : 'json'
+		});
+
 	}
 </script>
