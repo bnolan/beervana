@@ -9,10 +9,11 @@ Beervana::Application.routes.draw do
   resources :drinks
   resources :users
   resources :beers
+  resources :breweries
 
   if Rails.env.development?
     get 'debug'   => 'dashboard#debug'
   end
-  
+
   root 'dashboard#index'
 end
