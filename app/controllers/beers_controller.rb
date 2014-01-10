@@ -6,7 +6,7 @@ class BeersController < ApplicationController
       elsif params[:sort_by] == 'name'
         Beer.includes(:brewery).order 'name asc'
       elsif params[:sort_by] == 'controversiality'
-        Beer.order('controversiality desc')
+        Beer.includes(:brewery).order('controversiality desc')
       else
         Beer.includes(:brewery).top
       end

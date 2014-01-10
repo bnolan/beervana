@@ -57,17 +57,19 @@ class Beer < ActiveRecord::Base
   end
 
   def calculate_controversiality
-    ratings = weighted_drinks_ratings
+    ratings = drinks.collect { |d| d.rating - 3.0 }
 
     mean = ratings.sum.to_f / ratings.count
     sum = ratings.inject(0){|accum, i| accum +(i-mean)**2 }
     sample_variance = sum / (ratings.length - 1).to_f
 
-    Math.sqrt(sample_variance)
+    stdev = (sample_variance) # Math.sqrt
+
+    stdev.nan? ? 0.0 : stdev
   end
 
   def update_average_rating
-    update_attributes(:average_rating => calculate_average_rating, :controversiality => calculate_controversiality)
+    update_attributes!(:average_rating => calculate_average_rating, :controversiality => calculate_controversiality)
   end
   
   def friendly_abv
