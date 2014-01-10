@@ -14,6 +14,7 @@
 <center>
   <%= link_to 'Alphabetical', beers_path(:sort_by => :name) %> | 
   <%= link_to 'Most Popular', beers_path(:sort_by => :popular) %> | 
+  <%= link_to 'Controversiality', beers_path(:sort_by => :controversiality) %> | 
   <%= link_to 'ABV', beers_path(:sort_by => :abv) %>
 </center>
 
@@ -24,6 +25,7 @@
     <th>Beer</th>
     <th>Drinkers</th>
     <th>ABV</th>
+    <th>Controversiality</th>
     <th>Rating</th>
   </tr>
 <% @beers.each do |beer| %>
@@ -37,6 +39,9 @@
     </td>
     <td class="value">
       <%= beer.friendly_abv %>
+    </td>
+    <td class="value">
+      <%= sprintf "%0.2f", beer.controversiality %>
     </td>
     <td class="value">
       <%= beer.friendly_rating %>

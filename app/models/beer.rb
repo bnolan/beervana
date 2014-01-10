@@ -1,5 +1,6 @@
 class Beer < ActiveRecord::Base
-  require 'statistics2'
+  # require 'descriptive_statistics'
+
   belongs_to :brewery
   has_many :drinks
 
@@ -29,15 +30,19 @@ class Beer < ActiveRecord::Base
       (phat + z*z/(2*n) - z * Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
   end
 
-  # Hacked this up, which makes sense to me intuitively (as a non statistics-doing developer)
-  def calculate_average_rating
+  def weighted_drinks_ratings
     i = 10 # minimum number of votes required before we go all average
 
     if drinks.count >= i
-      drinks.collect(&:rating).sum / drinks.count.to_f
+      drinks.collect(&:rating)
     else
-      (drinks.collect(&:rating).concat ([3.0] * (i-drinks.count))).sum / i.to_f
+      drinks.collect(&:rating).concat ([3.0] * (i-drinks.count))
     end
+  end
+
+  # Hacked this up, which makes sense to me intuitively (as a non statistics-doing developer)
+  def calculate_average_rating
+    weighted_drinks_ratings.sum.to_f / weighted_drinks_ratings.count
     # if drinks.any?
 
     #   begin
@@ -51,8 +56,18 @@ class Beer < ActiveRecord::Base
     # end
   end
 
+  def calculate_controversiality
+    ratings = weighted_drinks_ratings
+
+    mean = ratings.sum.to_f / ratings.count
+    sum = ratings.inject(0){|accum, i| accum +(i-mean)**2 }
+    sample_variance = sum / (ratings.length - 1).to_f
+
+    Math.sqrt(sample_variance)
+  end
+
   def update_average_rating
-    update_attributes(:average_rating => calculate_average_rating)
+    update_attributes(:average_rating => calculate_average_rating, :controversiality => calculate_controversiality)
   end
   
   def friendly_abv
@@ -78,6 +93,7 @@ class Beer < ActiveRecord::Base
       :brewery_name => brewery.name,
       :brewery_id => brewery.id,
       :average_rating => average_rating,
+      :controversiality => controversiality,
       :abv => abv,
       :drink_count => drinks.count
     }
