@@ -1,7 +1,7 @@
 class DrinksController < ApplicationController
 
   def index
-    @drinks = Drink.order('created_at desc').limit(100)
+    @drinks = Drink.order('created_at desc').includes(:user).limit(100)
 
     render :json => @drinks
   end

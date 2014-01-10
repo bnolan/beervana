@@ -10,6 +10,19 @@ class Drink < ActiveRecord::Base
     volume * ((beer.abv || 5) / 100.0)
   end
 
+  def as_json(*args)
+    {
+      :id => id,
+      :user => {
+        :name => user.name,
+        :id => user.id
+      },
+      :volume => volume,
+      :beer_id => beer_id,
+      :rating => rating
+    }
+  end
+
 private
 
   def update_beer_average_rating
