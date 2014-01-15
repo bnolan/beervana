@@ -19,7 +19,10 @@ class Drink < ActiveRecord::Base
       },
       :volume => volume,
       :beer_id => beer_id,
-      :rating => rating
+      :rating => rating,
+      :notes => notes,
+      :created_at => created_at,
+      :updated_at => updated_at
     }
   end
 

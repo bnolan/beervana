@@ -97,7 +97,9 @@ class Beer < ActiveRecord::Base
       :average_rating => average_rating,
       :controversiality => controversiality,
       :abv => abv,
-      :drink_count => drinks.count
+      :drink_count => drinks.count,
+      :created_at => created_at,
+      :updated_at => updated_at
     }
 
     if args.first[:detailed]
