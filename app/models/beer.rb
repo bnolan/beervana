@@ -97,6 +97,11 @@ class Beer < ActiveRecord::Base
       :average_rating => average_rating,
       :controversiality => controversiality,
       :abv => abv,
+      :ibu => ibu,
+      :style => style,
+      :description => description,
+      :hops => hops,
+      :location => location,
       :drink_count => drinks.count,
       :created_at => created_at,
       :updated_at => updated_at
