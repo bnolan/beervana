@@ -10,6 +10,7 @@ group :development do
 end
 
 gem 'statistics2'
+# gem 'descriptive_statistics'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'

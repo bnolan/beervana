@@ -11,20 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219013548) do
+ActiveRecord::Schema.define(version: 20140715221453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "beers", force: true do |t|
     t.string   "name"
-    t.decimal  "abv",            precision: 3, scale: 1
+    t.decimal  "abv",              precision: 3, scale: 1
     t.integer  "brewery_id"
     t.integer  "ibu"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "average_rating",                         default: 0.0
+    t.float    "average_rating",                           default: 0.0
     t.integer  "drinks_count"
+    t.float    "controversiality"
   end
 
   create_table "breweries", force: true do |t|
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20131219013548) do
     t.string   "uid"
     t.string   "nickname"
     t.string   "password"
+    t.string   "email"
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
