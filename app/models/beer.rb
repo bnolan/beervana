@@ -99,7 +99,7 @@ class Beer < ActiveRecord::Base
       :abv => abv,
       :ibu => ibu,
       :style => style,
-      :description => description,
+      :details => details,
       :hops => hops,
       :location => location,
       :drink_count => drinks.count,
