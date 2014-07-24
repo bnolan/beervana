@@ -5,9 +5,7 @@ gem 'rails', '4.0.0.rc1'
 
 # Use sqlite3 as the database for Active Record
 
-group :development do
-  gem 'pg'
-end
+gem 'pg'
 
 gem 'statistics2'
 # gem 'descriptive_statistics'
@@ -42,7 +40,6 @@ group :doc do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor', group: :production
 end
 
