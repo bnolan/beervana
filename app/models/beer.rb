@@ -5,7 +5,6 @@ class Beer < ActiveRecord::Base
   has_many :drinks
 
   def self.top(limit = 500)
-    max_drinks = maximum(:drinks_count) || 0
     order("average_rating DESC", :name => :asc).limit(limit).includes(:brewery)
   end
 
@@ -43,29 +42,24 @@ class Beer < ActiveRecord::Base
   # Hacked this up, which makes sense to me intuitively (as a non statistics-doing developer)
   def calculate_average_rating
     weighted_drinks_ratings.sum.to_f / weighted_drinks_ratings.count
-    # if drinks.any?
-
-    #   begin
-    #     p = drinks.collect { |d| (d.rating.to_f - 2.5) / 2.5 }.sum
-    #     ci_lower_bound(p, drinks.count, 0.9) * 2.5 + 2.5
-    #   rescue
-    #     3.0 # fixme
-    #   end
-    # else
-    #   3.0
-    # end
   end
 
   def calculate_controversiality
-    ratings = drinks.collect { |d| d.rating - 3.0 }
+    ratings = drinks.pluck(:rating)
 
-    mean = ratings.sum.to_f / ratings.count
-    sum = ratings.inject(0){|accum, i| accum +(i-mean)**2 }
-    sample_variance = sum / (ratings.length - 1).to_f
+    # We want decimals so our division works later
+    ratings_count = ratings.count.to_d
+    high_count = ratings.select { |r| r > 3.0 }.count.to_d
+    low_count = ratings.select { |r| r < 3.0 }.count.to_d
 
-    stdev = (sample_variance) # Math.sqrt
+    high_low = [high_count, low_count]
+    high_low_count = high_count + low_count
 
-    stdev.nan? ? 0.0 : stdev
+    # Don't calculate nonsense - there's no controversy here.....
+    return 0.0 if ratings_count < 5 || high_low.any? { |c| c.zero? }
+
+    # Lifted from http://www.audiencedialogue.net/stat-controv.html - thanks Ben
+    high_low.min / high_low.max * high_low_count / ratings_count
   end
 
   def update_average_rating
