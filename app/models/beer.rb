@@ -59,7 +59,8 @@ class Beer < ActiveRecord::Base
     return 0.0 if ratings_count < 5 || high_low.any? { |c| c.zero? }
 
     # Lifted from http://www.audiencedialogue.net/stat-controv.html - thanks Ben
-    high_low.min / high_low.max * high_low_count / ratings_count
+    # This is now out of 5 for some unknown UI reason... sigh.
+    (high_low.min / high_low.max * high_low_count / ratings_count) * 5.0
   end
 
   def update_average_rating

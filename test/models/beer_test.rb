@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class DrinkTest < ActiveSupport::TestCase
+  #Controversiality is a 0-5 scale
   test "#calculate_controversiality" do
     @user = User.create!(:name => 'test', :password => 'somepassword')
     @beer = Beer.create!(
@@ -36,7 +37,7 @@ class DrinkTest < ActiveSupport::TestCase
       @user.drinks.create!(:beer => @beer, :rating => 5, :volume => 125)
       @user.drinks.create!(:beer => @beer, :rating => 1, :volume => 125)
     end
-    assert_equal(1.0, @beer.reload.controversiality)
+    assert_equal(5.0, @beer.reload.controversiality)
     Drink.destroy_all
 
     # Unequal counts are relatively biased
@@ -45,9 +46,10 @@ class DrinkTest < ActiveSupport::TestCase
       @user.drinks.create!(:beer => @beer, :rating => 5, :volume => 125)
       @user.drinks.create!(:beer => @beer, :rating => 5, :volume => 125)
       @user.drinks.create!(:beer => @beer, :rating => 5, :volume => 125)
+      @user.drinks.create!(:beer => @beer, :rating => 5, :volume => 125)
       @user.drinks.create!(:beer => @beer, :rating => 1, :volume => 125)
     end
-    assert_equal(0.25, @beer.reload.controversiality)
+    assert_equal(1.0, @beer.reload.controversiality)
     Drink.destroy_all
 
     # 3's water down the controversy
@@ -57,7 +59,7 @@ class DrinkTest < ActiveSupport::TestCase
       @user.drinks.create!(:beer => @beer, :rating => 3, :volume => 125)
       @user.drinks.create!(:beer => @beer, :rating => 3, :volume => 125)
     end
-    assert_equal(0.5, @beer.reload.controversiality)
+    assert_equal(2.5, @beer.reload.controversiality)
     Drink.destroy_all
   end
 end
