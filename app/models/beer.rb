@@ -2,7 +2,7 @@ class Beer < ActiveRecord::Base
   # require 'descriptive_statistics'
 
   belongs_to :brewery
-  has_many :drinks
+  has_many :drinks, :dependent => :destroy
 
   def self.top(limit = 500)
     order("average_rating DESC", :name => :asc).limit(limit).includes(:brewery)
