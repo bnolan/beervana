@@ -1,15 +1,14 @@
 class User < ActiveRecord::Base
-  require 'digest/sha1'
   validates_uniqueness_of :name
   validates_presence_of :name, :password
   has_many :drinks
   
   def self.hash_password(passwd)
-    Digest::SHA1.hexdigest("salty-hash-rainbow-table-#{passwd}")
+    BCrypt::Password.create(passwd)
   end
 
   def password_is?(passwd)
-    User.hash_password(passwd) == password
+    password.present? && BCrypt::Password.new(password) == passwd
   end
   
   def standard_drinks
