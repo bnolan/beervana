@@ -35,13 +35,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 To dump the drinks - just log in to your console and:
 
-puts Drink.all.to_yaml
+    require 'csv'
+
+    def to_csv(association)
+      CSV.generate do |csv|
+        csv << association.first.class.column_names
+        association.each do |row|
+          csv << row.attributes.values_at(*association.first.class.column_names)
+        end
+      end
+    end
+
+    puts to_csv(Beer.all)
+    puts to_csv(Drink.all)
 
 To get the email addresses:
 
-puts User.pluck('email')
+    puts User.pluck('email')
 
 Then reset the database:
 
-Drink.delete_all
-Beer.update_all :average_rating => 3.0, :controversiality => 0, :drinks_count => 0
+    Drink.delete_all
+    Beer.update_all :average_rating => 3.0, :controversiality => 0, :drinks_count => 0
+
+Anyone have ideas how I can schedule heroku to do this between sessions? I guess I'll just hack something in.
