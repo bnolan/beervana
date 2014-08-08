@@ -35,16 +35,16 @@
       <span class="brewery-name small"><%= beer.brewery.name %></span>
     </td>
     <td class="value">
-      <%= beer.drinks_count %>
+      <%= beer.current_beer_rating.try(:drinks_count) || 0 %>
     </td>
     <td class="value">
       <%= beer.friendly_abv %>
     </td>
     <td class="value">
-      <%= sprintf "%0.2f", beer.controversiality %>
+      <%= sprintf "%0.2f", beer.current_beer_rating.try(:controversiality) || 0 %>
     </td>
     <td class="value">
-      <%= beer.friendly_rating %>
+      <%= beer.current_beer_rating.try(:friendly_rating) || 3 %>
     </td>
   </tr>
 <% end %>

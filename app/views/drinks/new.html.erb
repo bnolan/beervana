@@ -6,7 +6,7 @@
 
 <%= form_for @drink do |f| %>
   <p class="f">
-    <%= text_field_tag :beer, @drink.beer.present?? @drink.beer.name : '', :placeholder => "Name of beer", :autocomplete => "off", :autocapitalize => "off", :autocorrect => "off" %>
+    <%= text_field_tag :beer, @drink.beer_rating.present?? @drink.beer.name : '', :placeholder => "Name of beer", :autocomplete => "off", :autocapitalize => "off", :autocorrect => "off" %>
     <%= f.hidden_field :beer_id %>
   </p>
   
@@ -35,7 +35,7 @@
       return true;
     }
 
-    if(beer.brewery.match(new RegExp(query, 'i'))){
+    if(beer.brewery_name.match(new RegExp(query, 'i'))){
       return true;
     }
     

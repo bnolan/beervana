@@ -11,21 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725022918) do
+ActiveRecord::Schema.define(version: 20140808035202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "beer_ratings", force: true do |t|
+    t.integer  "beer_id",                        null: false
+    t.integer  "event_id",                       null: false
+    t.float    "average_rating",   default: 0.0, null: false
+    t.float    "controversiality", default: 0.0, null: false
+    t.integer  "drinks_count",     default: 0,   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "beer_ratings", ["average_rating"], name: "index_beer_ratings_on_average_rating", using: :btree
+  add_index "beer_ratings", ["beer_id", "event_id"], name: "index_beer_ratings_on_beer_id_and_event_id", unique: true, using: :btree
+  add_index "beer_ratings", ["controversiality"], name: "index_beer_ratings_on_controversiality", using: :btree
+  add_index "beer_ratings", ["drinks_count"], name: "index_beer_ratings_on_drinks_count", using: :btree
+  add_index "beer_ratings", ["event_id"], name: "index_beer_ratings_on_event_id", using: :btree
+
   create_table "beers", force: true do |t|
     t.string   "name"
-    t.decimal  "abv",              precision: 3, scale: 1
+    t.decimal  "abv",        precision: 3, scale: 1
     t.integer  "brewery_id"
     t.integer  "ibu"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "average_rating",                           default: 0.0
-    t.integer  "drinks_count"
-    t.float    "controversiality",                         default: 0.0
     t.string   "style"
     t.string   "hops"
     t.string   "location"
@@ -40,7 +53,6 @@ ActiveRecord::Schema.define(version: 20140725022918) do
   end
 
   create_table "drinks", force: true do |t|
-    t.integer  "beer_id"
     t.integer  "user_id"
     t.integer  "volume"
     t.integer  "session"
@@ -48,7 +60,16 @@ ActiveRecord::Schema.define(version: 20140725022918) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beer_rating_id", null: false
   end
+
+  create_table "events", force: true do |t|
+    t.datetime "starts_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["starts_at"], name: "index_events_on_starts_at", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

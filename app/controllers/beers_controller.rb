@@ -1,15 +1,18 @@
 class BeersController < ApplicationController
 
   def index
-    @beers = if params[:sort_by] == 'abv'
-        Beer.includes(:brewery).order 'abv desc'
-      elsif params[:sort_by] == 'name'
-        Beer.includes(:brewery).order 'name asc'
-      elsif params[:sort_by] == 'controversiality'
-        Beer.includes(:brewery).order('controversiality desc')
-      else
-        Beer.includes(:brewery).top
-      end
+    relation = Beer.includes(:brewery, :current_beer_rating)
+
+    @beers = case params[:sort_by]
+    when 'abv'
+      relation.order 'abv desc'
+    when 'name'
+      relation.order 'name asc'
+    when 'controversiality'
+      relation.joins(:beer_ratings).merge(BeerRating.current).order 'controversiality desc'
+    else
+      relation.top
+    end
 
     respond_to do |format|
       format.json { render :json => @beers }

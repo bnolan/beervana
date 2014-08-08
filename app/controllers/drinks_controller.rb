@@ -7,7 +7,7 @@ class DrinksController < ApplicationController
   end
   
   def new
-    @drink = Drink.new :beer_id => params[:beer_id]
+    @drink = Drink.new(beer_id: params[:beer_id])
   end
   
   def create
@@ -39,5 +39,5 @@ class DrinksController < ApplicationController
   def drink_params
     params.require(:drink).permit(:beer_id, :notes, :rating, :volume)
   end
-  
+
 end
