@@ -17,14 +17,14 @@ class CreateBeerRatings < ActiveRecord::Migration
       t.timestamps
     end
 
-    reversible do |dir|
-      dir.up do
-        event = Event.current
+    # reversible do |dir|
+    #   dir.up do
+    #     event = Event.current
 
-        Beer.all.each do |beer|
-          BeerRating.create!(beer: beer, event: event, drinks_count: beer.drinks_count).recalculate!
-        end
-      end
-    end
+    #     Beer.all.each do |beer|
+    #       BeerRating.create!(beer: beer, event: event, drinks_count: beer.drinks_count).recalculate!
+    #     end
+    #   end
+    # end
   end
 end
