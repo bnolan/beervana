@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808035202) do
+ActiveRecord::Schema.define(version: 20140813224028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140808035202) do
   create_table "beer_ratings", force: true do |t|
     t.integer  "beer_id",                        null: false
     t.integer  "event_id",                       null: false
-    t.float    "average_rating",   default: 0.0, null: false
+    t.float    "average_rating",   default: 3.0, null: false
     t.float    "controversiality", default: 0.0, null: false
     t.integer  "drinks_count",     default: 0,   null: false
     t.datetime "created_at"
