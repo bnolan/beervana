@@ -5,6 +5,7 @@ class Import
     Drink.delete_all
     Beer.delete_all
     Brewery.delete_all
+    BeerRating.delete_all
 
     csv = IO.readlines(Rails.root.to_s + "/db/new-beers.csv").join
     # csv.encode!('UTF-8', 'ASCII', :invalid => :replace)
@@ -17,7 +18,7 @@ class Import
       
       (beer_name,brewery_name,style,abv,hops,ibu,location,description) = row
       
-      Beer.create(
+      beer = Beer.create(
         :brewery => Brewery.where(:name => brewery_name).first_or_create,
         :name => beer_name,
         :style => style.present? ? style : nil,
@@ -25,24 +26,10 @@ class Import
         :hops => hops.present? ? hops : nil,
         :ibu => ibu.present? ? ibu.to_f : nil,
         :location => location.present? ? location : nil,
-        :details => description.present? ? description : nil,
-        :average_rating => 3.0
+        :details => description.present? ? description : nil
       )
-      
-      # beers.each do |beer_or_brewery|
-      #   if beer_or_brewery[0..1] != "  "
-      #     brewery_name = beer_or_brewery
-      #     @current_brewery = Brewery.create!(:name => brewery_name)
-      #   else
-      #     name, abv, ibu = beer_or_brewery[2..-1].split(", ")
-      #     beer = Beer.new(:name => name,
-      #                  :brewery => @current_brewery)
-      #     beer.abv = abv if abv
-      #     beer.ibu = ibu[3..-1] if ibu
-      #     beer.save!
-      #   end
-      # end
 
+      BeerRating.for_beer_id(beer.id)
     end
   end
 end
