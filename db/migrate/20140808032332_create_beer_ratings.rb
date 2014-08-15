@@ -22,7 +22,7 @@ class CreateBeerRatings < ActiveRecord::Migration
         event = Event.current
 
         Beer.all.each do |beer|
-          BeerRating.create!(beer: beer, event: event, drinks_count: beer.drinks_count).recalculate!
+          BeerRating.create!(beer: beer, event: event, drinks_count: beer.drinks_count)
         end
       end
     end
