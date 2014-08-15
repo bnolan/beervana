@@ -33,13 +33,13 @@
   <%= link_to "Most popular beers", beers_path %>
 </h3>
 
-<%= render :partial => 'beers/show', :collection => Beer.top(5), :as => :beer %>
+<%= render :partial => 'beers/show', :collection => @top_beers, :as => :beer %>
 
 <h3 class="seperator">
   Recent drinks
 </h3>
 
-<%= render :partial => "drinks/show", :collection => Drink.order('created_at desc').limit(20), :as => :drink, :locals => {:show_drink_details => true} %>
+<%= render :partial => "drinks/show", :collection => @recent_drinks, :as => :drink, :locals => {:show_drink_details => true} %>
 
 <br />
 

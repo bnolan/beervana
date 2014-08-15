@@ -1,17 +1,12 @@
 class BeersController < ApplicationController
-
   def index
-    relation = Beer.includes(:brewery, :current_beer_rating)
+    query = BeerListQuery.new
 
     @beers = case params[:sort_by]
-    when 'abv'
-      relation.order 'abv desc'
-    when 'name'
-      relation.order 'name asc'
-    when 'controversiality'
-      relation.order_by_controversiality
-    else
-      relation.limit(500).order 'beer_ratings.average_rating DESC'
+    when 'abv'              then query.by_abv
+    when 'name'             then query.by_name
+    when 'controversiality' then query.by_controversiality
+    else                         query.by_average_rating
     end
 
     respond_to do |format|
@@ -28,5 +23,4 @@ class BeersController < ApplicationController
       format.html
     end
   end
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808035202) do
+ActiveRecord::Schema.define(version: 20140815061926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 20140808035202) do
     t.text     "details"
   end
 
+  add_index "beers", ["abv"], name: "index_beers_on_abv", using: :btree
+  add_index "beers", ["brewery_id"], name: "index_beers_on_brewery_id", using: :btree
+  add_index "beers", ["name"], name: "index_beers_on_name", using: :btree
+
   create_table "breweries", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -62,6 +66,10 @@ ActiveRecord::Schema.define(version: 20140808035202) do
     t.datetime "updated_at"
     t.integer  "beer_rating_id", null: false
   end
+
+  add_index "drinks", ["beer_rating_id"], name: "index_drinks_on_beer_rating_id", using: :btree
+  add_index "drinks", ["created_at"], name: "index_drinks_on_created_at", using: :btree
+  add_index "drinks", ["user_id"], name: "index_drinks_on_user_id", using: :btree
 
   create_table "events", force: true do |t|
     t.datetime "starts_at",  null: false
@@ -81,6 +89,7 @@ ActiveRecord::Schema.define(version: 20140808035202) do
     t.string   "email"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
 
 end

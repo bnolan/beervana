@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def drinks_brewery_count
-    drinks.collect(&:beer).collect(&:brewery_id).uniq.count
+    drinks.collect(&:beer).compact.collect(&:brewery_id).uniq.count
   end
   
   def drinks_volume_sum
