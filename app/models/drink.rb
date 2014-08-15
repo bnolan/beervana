@@ -19,7 +19,7 @@ class Drink < ActiveRecord::Base
   end
 
   def beer=(value)
-    self.beer_id = value.id
+    self.beer_id = value.try(:id)
   end
 
   def as_json(*args)

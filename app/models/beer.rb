@@ -4,8 +4,14 @@ class Beer < ActiveRecord::Base
   has_many :drinks, through: :beer_ratings
   has_one :current_beer_rating, -> { where(event_id: Event.current.id) }, class_name: "BeerRating"
 
+  scope :left_join_current_beer_ratings, -> { joins("LEFT JOIN beer_ratings ON beer_ratings.beer_id = beers.id AND beer_ratings.event_id = #{connection.quote Event.current.id}") }
+
   def self.top(limit = 500)
-    joins(:beer_ratings).merge(BeerRating.current).order("average_rating DESC", :name => :asc).limit(limit).includes(:brewery)
+    order("beer_ratings.average_rating DESC").limit(limit).includes(:brewery)
+  end
+
+  def self.order_by_controversiality
+    left_join_current_beer_ratings.order('controversiality desc')
   end
 
   def self.alpha

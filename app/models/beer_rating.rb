@@ -9,7 +9,7 @@ class BeerRating < ActiveRecord::Base
 
   def self.for_beer_id(beer_id)
     begin
-      find_or_create_by(beer_id: beer_id, event_id: Event.current)
+      find_or_create_by(beer_id: beer_id, event_id: Event.current.id)
     rescue ActiveRecord::RecordNotUnique
       retry
     end
