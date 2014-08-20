@@ -7,13 +7,11 @@
   <tr>
     <th>User</th>
     <th>Std. Drinks</th>
-    <th>Taste</th>
   </tr>
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.name, user %></td>
     <td><%= "%0.1f" % user.standard_drinks %></td>
-    <td><%= (user.taste * 100).to_i %>%</td>
   </tr>
 <% end %>
 </table>

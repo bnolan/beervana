@@ -21,16 +21,6 @@ class User < ActiveRecord::Base
   
   # trololol
   
-  def taste
-    if drinks.any?
-      0.5 + 
-        (0.5 / drinks.count * drinks.where('beer_id in (?)', Beer.where('average_rating>3').collect(&:id)).count) -
-        (0.5 / drinks.count * drinks.where('beer_id in (?)', Beer.where('average_rating<3').collect(&:id)).count)
-    else
-      0.5
-    end
-  end
-
   def drinks_brewery_count
     drinks.collect(&:beer).compact.collect(&:brewery_id).uniq.count
   end
@@ -43,8 +33,7 @@ class User < ActiveRecord::Base
     {
       :name => name,
       :id => id,
-      :standard_drinks => standard_drinks,
-      :taste => taste
+      :standard_drinks => standard_drinks
     }
   end
 end
