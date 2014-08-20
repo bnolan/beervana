@@ -1,7 +1,8 @@
 ben:
-  name: Ben Nolan
+  name: ben
   nickname: captain_benis
   email: ben@ben.ben
+  password: <%= User.hash_password 'password' %>
 
 roger:
   name: Roger Nesbitt

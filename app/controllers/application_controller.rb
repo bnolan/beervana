@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
-  # before_filter :ensure_beer_ratings_generated
-  
+  before_filter :unmangle_params
+
   def requires_current_user
     if current_user.present?
       # ok
@@ -26,9 +26,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def ensure_beer_ratings_generated
-    BeerRating.ensure_presence! # sorry hax
-  end  
+  # Proguard over-optimized the app and mangled the parameters posted to drinks#create
+  def unmangle_params
+    if params[:a] && params[:b] && params[:c] && request.post?
+      params[:username] = params[:a]
+      params[:password] = params[:b]
+      params[:drink] = params[:c]
+    end
+  end
 
   helper_method :current_user
   
