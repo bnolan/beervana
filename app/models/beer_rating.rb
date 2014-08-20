@@ -7,6 +7,14 @@ class BeerRating < ActiveRecord::Base
 
   validates :beer_id, :event_id, :average_rating, :controversiality, presence: true
 
+  def self.ensure_presence!
+    if BeerRating.current.count != Beer.count
+      Beer.all.each do |b|
+        BeerRating.for_beer_id(b.id)
+      end
+    end
+  end
+
   def self.for_beer_id(beer_id)
     begin
       find_or_create_by(beer_id: beer_id, event_id: Event.current.id)
