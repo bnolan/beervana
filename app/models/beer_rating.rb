@@ -5,6 +5,7 @@ class BeerRating < ActiveRecord::Base
 
   scope :current, -> { where(event_id: Event.current.id) }
 
+  before_validation :set_default_average_rating
   validates :beer_id, :event_id, :average_rating, :controversiality, presence: true
 
   def self.ensure_presence!
@@ -32,6 +33,10 @@ class BeerRating < ActiveRecord::Base
   end
 
   protected
+  def set_default_average_rating
+    self.average_rating = 3 if average_rating == 0
+  end
+
   def weighted_drinks_ratings
     i = 10 # minimum number of votes required before we go all average
 

@@ -1,0 +1,17 @@
+gross:
+  name: Gross Beer
+  abv: 3.2
+  brewery: dumb
+  style: foamy
+  hops: very
+  location: beside the pool
+  details: Gross Beer is proud to present the grossest beer ever.
+
+smelly:
+  name: Smelly Supreme
+  abv: 32.1
+  brewery: dumb
+  style: clumpy
+  hops: none
+  location: on top of the stereo
+  details: "Smelly Supreme: you can't get smellier"

@@ -4,14 +4,6 @@ class Beer < ActiveRecord::Base
   has_many :drinks, through: :beer_ratings
   has_one :current_beer_rating, -> { where(event_id: Event.current.id) }, class_name: "BeerRating"
 
-  def self.top(limit = 500)
-    joins(:beer_ratings).merge(BeerRating.current).order("average_rating DESC", :name => :asc).limit(limit).includes(:brewery)
-  end
-
-  def self.alpha
-    order(:name).includes(:brewery)
-  end
-
   def current_rating
     beer_ratings.current.first_or_create
   end
