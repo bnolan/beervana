@@ -24,5 +24,8 @@ module Beervana
     config.filter_parameters += [:a, :b, :c]
     
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.time_zone = 'Auckland'
+    config.active_record.default_timezone = :local
   end
 end
